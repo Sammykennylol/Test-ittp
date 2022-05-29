@@ -32,8 +32,8 @@ public class Main {
 
 
     };
-    public static ArrayList<Line_of_song> songArray = new ArrayList<>();
-    public static ArrayList<ArrayList<Line_of_song>> finalSongArray = new ArrayList<>();
+    public static ArrayList<LineOfSong> songArray = new ArrayList<>();
+    public static ArrayList<ArrayList<LineOfSong>> finalSongArray = new ArrayList<>();
 
 
     public static void main(String[] args) throws InterruptedException {
@@ -80,24 +80,24 @@ public class Main {
             for (int i = 0; i < worker.lyrics.length; i++) {
 
                 if ((worker.lyrics[i][0] == "Sonny")) {
-                    songArray.add(new Line_of_song(worker.lyrics[i][0],worker.lyrics[i][1]));
+                    songArray.add(new LineOfSong(worker.lyrics[i][0],worker.lyrics[i][1]));
 
                 } else if ((worker.lyrics[i][0] == "Cher")) {
-                    songArray.add(new Line_of_song(worker.lyrics[i][0],worker.lyrics[i][1]));
+                    songArray.add(new LineOfSong(worker.lyrics[i][0],worker.lyrics[i][1]));
 
                 }
 
 
                 if ((worker.lyrics[i][0] == "Sonny, Cher") && indexesOfDuet[k][countInd] == 1) {
-                    songArray.add(new Line_of_song("Cher",worker.lyrics[i][1]));
-                    songArray.add(new Line_of_song("Sonny",worker.lyrics[i][1]));
+                    songArray.add(new LineOfSong("Cher",worker.lyrics[i][1]));
+                    songArray.add(new LineOfSong("Sonny",worker.lyrics[i][1]));
                     countInd++;
                     if (countInd==4) countInd = 0;
 
                 }
                 else if ((worker.lyrics[i][0] == "Sonny, Cher") && indexesOfDuet[k][countInd] == 2) {
-                    songArray.add(new Line_of_song("Sonny",worker.lyrics[i][1]));
-                    songArray.add(new Line_of_song("Cher",worker.lyrics[i][1]));
+                    songArray.add(new LineOfSong("Sonny",worker.lyrics[i][1]));
+                    songArray.add(new LineOfSong("Cher",worker.lyrics[i][1]));
                     countInd++;
                     if (countInd==4) countInd = 0;
                 }
@@ -107,32 +107,7 @@ public class Main {
 
 }
 
-/**
- * Класс для хранения результата пения в массиве songArray
- */
-class Line_of_song{
-    public String name;
-    public String song;
 
-    public Line_of_song(String name,String song)
-    {
-        this.name = name;
-        this.song = song;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Line_of_song that = (Line_of_song) o;
-        return Objects.equals(name, that.name) && Objects.equals(song, that.song);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, song);
-    }
-}
 
 /**
  * Класс, в котором создаются и запускаются потоки Cher и Sonny
@@ -179,7 +154,7 @@ class Worker{
             {
                 System.out.println( lyrics[i][0] + ": " + lyrics[i][1]);
                 isDuetCher = false;
-                Main.songArray.add(new Line_of_song(lyrics[i][0],lyrics[i][1]));
+                Main.songArray.add(new LineOfSong(lyrics[i][0],lyrics[i][1]));
                 i++;
 
 
@@ -192,7 +167,7 @@ class Worker{
                 if (!isDuetCher)
                 {
                     System.out.println( "Cher" + ": " + lyrics[i][1]);
-                    Main.songArray.add(new Line_of_song("Cher",lyrics[i][1]));
+                    Main.songArray.add(new LineOfSong("Cher",lyrics[i][1]));
                 }
 
                 isDuetCher = true;
@@ -214,7 +189,7 @@ class Worker{
             if ((lyrics[i][0] == "Sonny") )
             {
                 System.out.println( lyrics[i][0] + ": " + lyrics[i][1]);
-                Main.songArray.add(new Line_of_song(lyrics[i][0],lyrics[i][1]));
+                Main.songArray.add(new LineOfSong(lyrics[i][0],lyrics[i][1]));
                 isDuetSonny = false;
 
 
@@ -230,7 +205,7 @@ class Worker{
                 if (!isDuetSonny)
                 {
                     System.out.println( "Sonny" + ": " + lyrics[i][1]);
-                    Main.songArray.add(new Line_of_song("Sonny",lyrics[i][1]));
+                    Main.songArray.add(new LineOfSong("Sonny",lyrics[i][1]));
                 }
 
                 isDuetSonny = true;

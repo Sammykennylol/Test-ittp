@@ -11,7 +11,7 @@ public class SongTest {
 
 
     @RepeatedTest(500)
-    public void shouldBeOne() throws InterruptedException {
+    public void shouldBeTrue() throws InterruptedException {
 
         Assert.assertEquals(true,Main.doMain());
     }
